@@ -16,7 +16,7 @@
             <form id="text" action="/text-to-ascii-art" method="POST">
                 <div>
                     <!-- mb later I'll add a placeholder="" maxlength="" autofocus name="" -->
-                    <textarea class="input" id="input" autofocus name="input">{{.Input}}</textarea>
+                    <textarea class="input" autofocus name="input" cols="50" rows="5">{{.Input}}</textarea>
                 </div>
                 <div class="settings">
                     <select class="fonts" id="font" name="font">
@@ -30,7 +30,7 @@
                 </div>
             </form>
             <div class="pre">
-                <textarea class="pre-style" cols="50" rows="5">{{.Output}}</textarea>
+                <pre class="pre-style" cols="50" rows="5">{{.Output}}</pre>
             </div>
         </div>
     </main>
