@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="static/style.css">
+    <title>Text to ASCII Art</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header_inner">
+            <a href="/">
+                <h1 class="header_title">Text to ASCII Art</h1>
+            </a>
+        </div>  
+    </header>
+    <main class="main">
+        <div class="content">
+            <form id="text" action="/text-to-ascii-art" method="POST">
+                <div>
+                    <!-- mb later I'll add a placeholder="" maxlength="" autofocus name="" -->
+                    <textarea class="input" id="input" autofocus name="input">{{.Input}}</textarea>
+                </div>
+                <div class="settings">
+                    <select class="fonts" id="font" name="font">
+                        <option value="banners/standard.txt">Standard</option>
+                        <option value="banners/shadow.txt">Shadow</option>
+                        <option value="banners/thinkertoy.txt">Thinkertoy</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="button">Convert</button>
+                </div>
+            </form>
+            <div class="pre">
+                <textarea class="pre-style" cols="50" rows="5">{{.Output}}</textarea>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <h3>by suusslauaa</h3>
+    </footer>
+</body>
