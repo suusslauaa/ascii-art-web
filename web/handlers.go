@@ -10,8 +10,7 @@ import (
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
-		app.errorLog.Println("NotFound", http.StatusNotFound)
-		Errors(w, "NotFound", http.StatusNotFound)
+		app.notFound(w)
 		return
 	}
 
@@ -22,24 +21,20 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 
 	temp, err := template.ParseFiles("ui/html/home.html")
 	if err != nil {
-		app.errorLog.Println(err.Error())
-		Errors(w, "InternalServerError", http.StatusInternalServerError)
+		app.serverError(w, err)
 		return
 	}
 
 	err = temp.Execute(w, data)
 	if err != nil {
-		app.errorLog.Println(err.Error())
-		Errors(w, "InternalServerError", http.StatusInternalServerError)
-		return
+		app.serverError(w, err)
 	}
 }
 
 func (app *application) output(w http.ResponseWriter, r *http.Request) {
 	text := r.FormValue("input")
 	if text == "" {
-		app.errorLog.Println("BadRequest", http.StatusBadRequest)
-		Errors(w, "BadRequest", http.StatusBadRequest)
+		app.badRequest(w)
 		return
 	}
 
@@ -48,8 +43,7 @@ func (app *application) output(w http.ResponseWriter, r *http.Request) {
 
 	output, err := program.TextToASCIIArt(text, banner)
 	if err != nil {
-		app.errorLog.Println(err.Error())
-		Errors(w, "InternalServerError", http.StatusInternalServerError)
+		app.serverError(w, err)
 		return
 	}
 
@@ -60,15 +54,12 @@ func (app *application) output(w http.ResponseWriter, r *http.Request) {
 
 	temp, err := template.ParseFiles("ui/html/home.html")
 	if err != nil {
-		app.errorLog.Println(err.Error())
-		Errors(w, "InternalServerError", http.StatusInternalServerError)
+		app.serverError(w, err)
 		return
 	}
 
 	err = temp.Execute(w, data)
 	if err != nil {
-		app.errorLog.Println(err.Error())
-		Errors(w, "InternalServerError", http.StatusInternalServerError)
-		return
+		app.serverError(w, err)
 	}
 }
