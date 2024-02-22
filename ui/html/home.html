@@ -16,7 +16,7 @@
             <form id="text" action="/text-to-ascii-art" method="POST">
                 <div>
                     <!-- mb later I'll add a placeholder="" maxlength="" autofocus name="" -->
-                    <textarea class="input" autofocus name="input" cols="50" rows="5">{{.Input}}</textarea>
+                    <textarea class="input" autofocus name="input" cols="50" rows="5" id="input">{{.Input}}</textarea>
                 </div>
                 <div class="settings">
                     <select class="fonts" id="font" name="font">
@@ -30,11 +30,12 @@
                 </div>
             </form>
             <div class="pre">
-                <pre class="pre-style" cols="50" rows="5">{{.Output}}</pre>
+                <pre class="pre-style" cols="50" rows="5" id="output">{{.Output}}</pre>
             </div>
         </div>
     </main>
     <footer class="footer">
         <h3>by suusslauaa</h3>
     </footer>
+    <script src="../static/js/main.go" type="text/x-go"></script>
 </body>
