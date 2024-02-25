@@ -2,13 +2,6 @@
 A simple Go web-application to convert your text to ASCII Art.  
 This web-application is able to read your text and convert it to each font mentioned below.
 <h3>Here is some examples:</h3>
-<header class="header">
-    <div class="header_inner">
-        <a href="/">
-            <h1 class="header_title">Text to ASCII Art</h1>
-        </a>
-    </div>  
-</header>
 <div>
     <textarea class="input" autofocus name="input" cols="50" rows="5" id="input">Your text</textarea>
 </div>
