@@ -32,6 +32,8 @@ func (app *application) Errors(w http.ResponseWriter, msgs string, status int) {
 		Code:    status,
 	}
 
+	app.errorLog.Printf("%s: %d", msgs, status)
+
 	temp, err := template.ParseFiles("ui/html/error.html")
 	if err != nil {
 		app.serverError(w, err)

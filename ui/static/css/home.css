@@ -1,116 +1,126 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin:0;
+  padding:0;
   text-decoration: none;
+  resize: none;
+  box-sizing: border-box;
 }
 
 body {
   font-family: Arial, sans-serif;
   background-color: #f8f8f8;
   color: rgb(77, 141, 127);
-  line-height: 1.6;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
-.header {
+header {
   background-color: rgb(35, 190, 157);
   color: #fff;
-  padding: 20px;
   text-align: center;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  padding: 1%;
 }
 
-.header_inner {
+main {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  width: 50%;
+  height: 80%;
+  transform: translateY(-50%);
+  background-color: #fff;
+  box-shadow: 0 0 10vh rgb(98, 233, 204);
+  padding-top: 4%;
+  border: 1% solid #ccc;
+  border-radius: 5%;
   display: flex;
-  justify-content: center;
+  flex-direction: column; 
   align-items: center;
 }
 
-.header_title {
-  color: #fff;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2rem;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.main {
-  margin: 20px auto;
-  flex: 1;
-}
-
-.content {
+textarea {
+  padding: 5%;
+  border: 0.3vh solid #ccc;
+  border-radius: 2vh;  
+  width: 100%;
   background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgb(98, 233, 204);
-  width: 100%;
-  flex: 1; 
-  flex-direction: column;
-  justify-content: center;
+  color: #000000;
+  text-align: left;
+  overflow: auto;
+  height: 70%;
+  margin-bottom: 5%;
 }
 
-.input {
-  resize: none;
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.settings {
-  margin-bottom: 10px;
-}
-
-.settings-content option {
-  padding: 1vw;
-  font-size: 1vw;
-  color: #fff;
-}
-
-.fonts,
-.button {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+select {
+  border: 0.3vh solid #ccc;
+  border-radius: 2vh;  
+  padding: 3%;
+  width: 30%;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 20%;
+  margin-right: 20%;
+  margin-left: 15%;
   background-color: #fff;
   cursor: pointer;
 }
 
-.button {
+.convertButton {
+  cursor: pointer;
+  border: 0.3vh solid #ccc;
+  border-radius: 2vh;  
+  padding: 3%;
+  width: calc(textarea);
+  text-align: center;
   background-color: #007bff;
   color: #fff;
   transition: background-color 0.3s ease;
 }
 
-.button:hover {
-  background-color: #0056b3;
-}
-
-.pre {
-  margin-top: 10px;
-  text-align: center;
-}
-
-.pre-style {
+.output {
+  width: 60%;
+  height: 40%;
+  margin-right: -25%;
   background-color: #fff;
-  color: #000000;
-  text-align: left;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  overflow: auto;
-  min-height: 149px;
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
 }
 
-.footer {
-  background-color: rgb(35, 190, 157);
-  color: #fff;
-  padding: 1vw;
+pre {
+  color: #000000;
+  margin-right: -20%;
+  margin-left: -20%;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border: 0.3vh solid #ccc;
+  border-radius: 2vh;
+  padding: 3%;
+  text-align: left;
+  overflow: auto;
+}
+
+.copyButton {
+  cursor: pointer;
+  border: 0.3vh solid #ccc;
+  border-radius: 2vh;  
+  padding: 2%;
+  margin-left: 20%;
+  width: calc(textarea);
   text-align: center;
-  position: sticky;
+  background-color: #007bff;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+footer {
+  padding: 1%;
+  background-color: rgb(35, 190, 157);
+  text-align: center;
+  color: #fff;
+  position: absolute;
   bottom: 0;
+  width: 100vw;
 }

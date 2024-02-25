@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" href="../static/css/home.css">
     <title>Text to ASCII Art</title>
+    <link rel="stylesheet" href="../static/css/home.css">
 </head>
 <body>
-    <header class="header">
-        <div class="header_inner">
-            <a href="/">
-                <h1 class="header_title">Text to ASCII Art</h1>
-            </a>
-        </div>  
+    <header>
+        <a href="/" style="color: #fff">
+            <h1>Text to ASCII Art</h1>
+        </a>
     </header>
-    <main class="main">
-        <div class="content">
-            <form id="text" action="/text-to-ascii-art" method="POST">
-                <div>
-                    <!-- mb later I'll add a placeholder="" maxlength="" autofocus name="" -->
-                    <textarea class="input" autofocus name="input" cols="50" rows="5" id="input">{{.Input}}</textarea>
-                </div>
-                <div class="settings">
-                    <select class="fonts" id="font" name="font">
-                        <option value="program/banners/standard.txt">Standard</option>
-                        <option value="program/banners/shadow.txt">Shadow</option>
-                        <option value="program/banners/thinkertoy.txt">Thinkertoy</option>
-                    </select>
-                </div>
-                <div>
-                    <button class="button">Convert</button>
-                </div>
-            </form>
-            <div class="pre">
-                <pre class="pre-style" cols="50" rows="5" id="output">{{.Output}}</pre>
-            </div>
+    <main>
+        <form id="text" action="/text-to-ascii-art" method="POST">
+            <textarea name="input" cols="50" rows="5" id="input">{{.Input}}</textarea>
+            <select id="font" name="font">
+                <option value="program/banners/standard.txt">Standard</option>
+                <option value="program/banners/shadow.txt">Shadow</option>
+                <option value="program/banners/thinkertoy.txt">Thinkertoy</option>
+            </select>
+            <button class="convertButton">Convert</button>
+        </form>
+        <script>
+            function copyText() {
+                var text = document.getElementById("output").innerText;
+                navigator.clipboard.writeText(text)
+                    .then(() => {
+                        alert("Текст скопирован!");
+                    })
+                    .catch(err => {
+                        console.error('Ошибка при копировании текста: ', err);
+                    });
+            }
+        </script>
+        <div class="output">
+            <pre autofocus name="output" cols="50" rows="5" id="output">{{.Output}}</pre>
+            <button class="copyButton" onclick="copyText()">Copy</button>
         </div>
     </main>
-    <footer class="footer">
+
+    <footer>
         <h3>by suusslauaa</h3>
     </footer>
-    <!-- <script src="../static/js/main.js" type="text/javascript"></script> -->
 </body>
