@@ -49,9 +49,9 @@
     <h2>Usage</h2>
     <ol>
         <li>Clone the repository:</li>
-        <code><p style="background-color:black;color:white;">$ git clone https://github.com/suusslauaa/text-to-ascii-art.git</p></code>
+        <code>$ git clone https://github.com/suusslauaa/text-to-ascii-art.git</code>
         <li>There is a command to run this web-application:</li>
-        <code><p style="background-color:black;color:white;">$ go run ./web</p></code>
+        <code>$ go run ./web</code>
     </ol>
     <h2>Author</h2>
     <li><a href="https://github.com/suusslauaa" target="_blank">suusslauaa</a></li>
