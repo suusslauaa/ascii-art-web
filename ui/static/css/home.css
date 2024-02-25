@@ -39,7 +39,6 @@ body {
 
 .main {
   margin: 20px auto;
-  max-width: 800px;
   flex: 1;
 }
 
@@ -48,21 +47,15 @@ body {
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgb(98, 233, 204);
-  max-width: 3200px;
   width: 100%;
   flex: 1; 
   flex-direction: column;
   justify-content: center;
-  width: 600px;
-  min-height: 149px;
-  max-height: 1800px;
 }
 
 .input {
   resize: none;
-  max-width: 3200px;
   width: 100%;
-  width: 559px;
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -104,14 +97,13 @@ body {
 }
 
 .pre-style {
+  background-color: #fff;
   color: #000000;
   text-align: left;
   border: 1px solid #ccc;
   border-radius: 5px;
   overflow: auto;
   min-height: 149px;
-  max-width: 3200px;
-  max-height: 854px;
 }
 
 .footer {
