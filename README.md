@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <font color="black">
     <h1>Text to ASCII Art</h1>
     A simple Go web-application to convert your text to ASCII Art.  
