@@ -1,3 +1,3 @@
-module ascii-art-web
+module text-to-ascii-art
 
-go 1.20
+go 1.22.4

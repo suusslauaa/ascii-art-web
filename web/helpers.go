@@ -1,4 +1,4 @@
-package main
+package web
 
 import (
 	"fmt"
@@ -7,41 +7,44 @@ import (
 	"runtime/debug"
 )
 
-func (app *application) serverError(w http.ResponseWriter, err error) {
+type ApplicationError struct {
+	Message string
+	Code    int
+}
+
+func (app *Application) ServerError(w http.ResponseWriter, err error) {
 	trace := fmt.Sprintf("%s\n%s", err.Error(), debug.Stack())
 	app.errorLog.Output(2, trace)
 
 	app.Errors(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 }
 
-func (app *application) clientError(w http.ResponseWriter, status int) {
+func (app *Application) ClientError(w http.ResponseWriter, status int) {
 	app.Errors(w, http.StatusText(status), status)
 }
 
-func (app *application) notFound(w http.ResponseWriter) {
-	app.clientError(w, http.StatusNotFound)
+func (app *Application) NotFound(w http.ResponseWriter) {
+	app.ClientError(w, http.StatusNotFound)
 }
 
-func (app *application) badRequest(w http.ResponseWriter) {
-	app.clientError(w, http.StatusBadRequest)
+func (app *Application) BadRequest(w http.ResponseWriter) {
+	app.ClientError(w, http.StatusBadRequest)
 }
 
-func (app *application) Errors(w http.ResponseWriter, msgs string, status int) {
-	error := Error{
-		Message: msgs,
-		Code:    status,
-	}
+func (app *Application) MethodNotAllowed(w http.ResponseWriter) {
+	app.ClientError(w, http.StatusMethodNotAllowed)
+}
 
-	app.errorLog.Printf("%s: %d", msgs, status)
+func (app *Application) Errors(w http.ResponseWriter, errorMessage string, errorCode int) {
+	w.WriteHeader(errorCode)
 
 	temp, err := template.ParseFiles("ui/html/error.html")
 	if err != nil {
-		app.serverError(w, err)
+		app.ServerError(w, err)
 		return
 	}
 
-	err = temp.Execute(w, error)
-	if err != nil {
-		app.serverError(w, err)
+	if err := temp.Execute(w, ApplicationError{Message: errorMessage, Code: errorCode}); err != nil {
+		http.Error(w, "err", http.StatusInternalServerError)
 	}
 }

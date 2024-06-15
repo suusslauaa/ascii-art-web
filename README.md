@@ -16,7 +16,13 @@ This web-application is able to read your text and convert it to each font menti
 2. There is a command to run this web-application:
 
     ```
-    $ go run ./web
+    $ go run .
     ```
 
+3. If you want to change the port, use this flag:
+
+    ```
+    $ go run . -addr :8080
+    ```
+    
 ### Author: [suusslauaa](https://github.com/suusslauaa)

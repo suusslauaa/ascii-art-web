@@ -1,9 +1,9 @@
 function text (input, output) {
-  var txtArea = document.getElementById(input);
+  var textArea = document.getElementById(input);
 
-  txtArea.addEventListener('input', function () {
+  textArea.addEventListener('input', function () {
     var div = document.getElementById(output);
-    div.innerHTML = txtArea.value;
+    div.innerHTML = textArea.value;
   })
 }
 

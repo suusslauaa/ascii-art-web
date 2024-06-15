@@ -1,40 +1,45 @@
-package main
+package web
 
 import (
 	"html/template"
 	"net/http"
 	"strings"
 
-	"ascii-art-web/program"
+	"text-to-ascii-art/program"
 )
 
-func (app *application) home(w http.ResponseWriter, r *http.Request) {
+func (app *Application) Home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
-		app.notFound(w)
+		app.NotFound(w)
 		return
 	}
 
-	data := Data{
-		Input:  "",
-		Output: "",
+	if r.Method != http.MethodGet {
+		app.MethodNotAllowed(w)
+		return
 	}
 
 	temp, err := template.ParseFiles("ui/html/home.html")
 	if err != nil {
-		app.serverError(w, err)
+		app.ServerError(w, err)
 		return
 	}
 
-	err = temp.Execute(w, data)
+	err = temp.Execute(w, Data{})
 	if err != nil {
-		app.serverError(w, err)
+		app.ServerError(w, err)
 	}
 }
 
-func (app *application) output(w http.ResponseWriter, r *http.Request) {
+func (app *Application) Output(w http.ResponseWriter, r *http.Request) {
 	text := r.FormValue("input")
 	if text == "" {
-		app.badRequest(w)
+		app.BadRequest(w)
+		return
+	}
+
+	if r.Method != http.MethodPost {
+		app.MethodNotAllowed(w)
 		return
 	}
 
@@ -43,23 +48,18 @@ func (app *application) output(w http.ResponseWriter, r *http.Request) {
 
 	output, err := program.TextToASCIIArt(text, banner)
 	if err != nil {
-		app.serverError(w, err)
+		app.ServerError(w, err)
 		return
-	}
-
-	data := Data{
-		Input:  text,
-		Output: output,
 	}
 
 	temp, err := template.ParseFiles("ui/html/home.html")
 	if err != nil {
-		app.serverError(w, err)
+		app.ServerError(w, err)
 		return
 	}
 
-	err = temp.Execute(w, data)
+	err = temp.Execute(w, Data{text, output})
 	if err != nil {
-		app.serverError(w, err)
+		app.ServerError(w, err)
 	}
 }
